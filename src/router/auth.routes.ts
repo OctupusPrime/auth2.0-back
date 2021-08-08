@@ -1,6 +1,5 @@
 import { Router } from "express"
 import authController from "../controllers/auth.controller"
-import hasToken from '../middlewares/access.middleware'
 import { body } from 'express-validator'
 
 const router = Router()

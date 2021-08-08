@@ -4,9 +4,9 @@ import hasToken from '../middlewares/access.middleware'
 
 const router = Router()
 
-// router.use(hasToken)
+router.use(hasToken)
 
-// router.post('/add', userController.addWin)
+router.post('/add', userController.addWin)
 
 export default router
 

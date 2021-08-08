@@ -94,8 +94,8 @@ class authController {
 
             const { refreshToken, accessToken } = await updateTokens(thisUser?.id)
 
-            res.cookie('refreshToken', refreshToken, cookieCofig.refresh.cookieOptns); 
-            res.cookie('accessToken', accessToken, cookieCofig.access.cookieOptns); 
+            res.cookie('refreshToken', refreshToken, cookieCofig.refresh.cookieOptns)
+            res.cookie('accessToken', accessToken, cookieCofig.access.cookieOptns)
     
             return res.send({
                 user: thisUser,

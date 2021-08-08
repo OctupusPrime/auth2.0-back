@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken' 
 
-interface RequestParams {
+interface TokenInterface {
     userId: string
-  }
+}
 
-export default (req: Request<RequestParams>, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction) => {
     if (req.method === 'OPTIONS')
         return next()
 
@@ -17,7 +17,7 @@ export default (req: Request<RequestParams>, res: Response, next: NextFunction) 
     try {
         const decoded = jwt.verify(accessToken, `${process.env.JWT_SECRET}`)
 
-        // req.userId = decoded
+        req.userId = (decoded as TokenInterface).userId 
     } catch (e) {
         if (e instanceof jwt.TokenExpiredError)
         return res.status(401).send({message: "Token expired"})
@@ -28,5 +28,5 @@ export default (req: Request<RequestParams>, res: Response, next: NextFunction) 
         return res.status(500).send({message: "Server error"})
     }
 
-    next(next)
+    next()
 }
